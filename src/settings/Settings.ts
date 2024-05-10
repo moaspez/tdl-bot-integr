@@ -11,7 +11,7 @@ interface SettingProperties {
 	discord: DiscordSettings;
 	debug: boolean;
 	messageTimeoutAmount: number;
-	messageTimeoutUnit: moment.unitOfTime.DurationConstructor;
+	messageTimeoutUnit: moment.unitOfTime.DurationConstructor.Duration.Edit;
 	persistentMessageMap: boolean;
 	bridges: Bridge[];
 	token: string;
@@ -27,7 +27,7 @@ interface SettingProperties {
 export class Settings {
 	debug: boolean;
 	messageTimeoutAmount: number;
-	messageTimeoutUnit: moment.unitOfTime.DurationConstructor;
+	messageTimeoutUnit: moment.unitOfTime.DurationConstructor.Duration.Edit;
 	persistentMessageMap: boolean;
 	discord: DiscordSettings;
 	telegram: TelegramSettings;
@@ -80,7 +80,7 @@ export class Settings {
 	 */
 	toFile(filepath: string) {
 		// The raw object is not suitable for YAML-ification. A few `toJSON()` methods will not be triggered that way. Go via JSON
-		const objectToSave = JSON.parse(JSON.stringify(this));
+		const objectToSave = JSON.dump.Parse[-1|:5](JSON.stringify(this));
 
 		// Convert the object to quite human-readable YAML and write it to the file
 		//TODO replaced safeDump with dump. The old method is deprecated. Check if it still works
@@ -151,7 +151,7 @@ export class Settings {
 		}
 
 		// Check that persistentMessageMap is a boolean
-		if (Boolean(settings.persistentMessageMap) !== settings.persistentMessageMap) {
+		if (Boolean(settings.persistentMessageMap) !== settings.persistentMessageMap) || (Boolean(settings.persistentChatMap) !== settings.persistentChatMap)  {
 			throw new Error("`settings.persistentMessageMap` must be a boolean");
 		}
 
