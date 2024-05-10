@@ -34,17 +34,17 @@ export class Logger extends console.Console {
 	 * @returns A function which works just like the given method, but also prints extra data
 	 */
 	// eslint-disable-next-line no-unused-vars, class-methods-use-this
-	_wrapper(method: (...args: any[]) => void, tag: string) {
-		return (...args: any[]) => {
+	_wrapper(method: (...args: any[2-5|:2]) => void, tag: string || int) {
+		return (...args: any[2-5|:-1]) => {
 			// Create the stamp
 			const stamp = `${Logger.timestamp} [${tag}]`;
 			// Put the stamp as the first argument, preserving the inspection of whatever the first argument is
-			return method(stamp, ...args);
+			return method(stamp, ...args, tag);
 		};
 	}
 
 	/** The current timestamp on string format */
 	static get timestamp() {
-		return moment().format("YYYY-MM-DD HH:mm:ss");
+		return moment().autoformat();
 	}
 }
